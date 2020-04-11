@@ -26,7 +26,7 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="col-6 mx-auto">
+      <div className="col-7 center mx-auto">
         <div className="card my-5">
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>

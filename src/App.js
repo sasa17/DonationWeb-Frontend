@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 
 // Components
-import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 import SignupForm from "./forms/SignupForm";
 import LoginForm from "./forms/LoginForm";
 import Profile from "./Profile";
@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div id="app" className="container-fluid">
       <div className="row">
-        <div className="col-2">{authStore.user && <Sidebar />}</div>
+        <Navbar />
         <div className="content col-10">{getView()}</div>
       </div>
     </div>
