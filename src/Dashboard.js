@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
-import { Sparklines, SparklinesBars } from "react-sparklines";
-import { ProgressBar, Dropdown } from "react-bootstrap";
+// import { Sparklines, SparklinesBars } from "react-sparklines";
+import { ProgressBar} from "react-bootstrap";
 
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';

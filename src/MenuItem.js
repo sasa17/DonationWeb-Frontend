@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const MenuItem = ({ menu }) => {
   return (
     <div className="card-body">
-      <h5 className="card-text">{menu.name}</h5>
-      <h5 className="card-text">{menu.available_qty}</h5>
+      <ul className="list-group">
+        <li className="list-group-item">{menu.name} {menu.available_qty}</li>
+      </ul>
     </div>
   );
 };

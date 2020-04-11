@@ -26,39 +26,43 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="col-7 center mx-auto">
-        <div className="card my-5">
+      <div className="col-5 row-10 center mx-auto">
+        <div className="card" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username</label>
                 <input
                   type="text"
                   className="form-control"
                   id="username"
                   value={username}
                   name="username"
-                  placeholder="Username"
+                  placeholder=""
+                  style={{color: "snow"}}
                   onChange={this.handleChange}
                 />
+                
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password: </label>
                 <input
                   type="password"
                   className="form-control"
                   id="password"
                   value={password}
                   name="password"
-                  placeholder="Password"
+                  placeholder=""
+                  color= "darkgreen"
                   onChange={this.handleChange}
                 />
+                
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
                 Login
               </button>
-              <Link to="/signup" className="btn btn-link my-2 my-sm-0">
-                Signup for an account
+              <Link to="/signup" className="btn btn-link my-2 my-sm-0" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
+                Signup
               </Link>
             </form>
           </div>
