@@ -30,11 +30,11 @@ class Profile extends Component {
     ));
     return (
       <div className="container">
-        <h2 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2 center">
-            Restaurant Profile
+        <h2 className="font-bold leading-normal mb-2 text-gray-800 mb-2 center" style={{fontSize: 32, color: "darkgreen"}}>
+        {profileStore.profile.name} Profile
           </h2>
-        <div className="row">
-          <div className="col">
+        <div className="row left">
+          <div className="col-7">
             <div className="card width: 18rem;">
               <img
                 className="img-responsive mx-1 my-5 center"
@@ -54,8 +54,9 @@ class Profile extends Component {
                 </p>
               </div>
             </div>
-            <div className="col">
-              <div className="card width: 18rem;">
+            </div>
+            <div className="col" style={{flexDirection: "row-reverse"}}>
+              <div className="card">
                 {items}
                 <button className="btn-success rounded btn-block">
                   Add Menu Items
@@ -63,7 +64,6 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-        </div>
       </div>
     );
   }

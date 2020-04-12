@@ -8,27 +8,27 @@ import Logout from "./Logout";
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: 'darkgreen'}}>
-        <h className="navbar-brand" style={{fontWeight: "bold", color: "snow", marginLeft: 15, fontSize: 34}}>Feed Forward</h>
-          <ul className="navbar-nav">
-            <li className="nav-item">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={{backgroundColor: 'darkgreen'}}>
+        <h1 className="navbar-brand" style={{fontWeight: "bold", color: "snow", marginLeft: 15, fontSize: 34}}>Feed Forward</h1>
+        <div className="navbar container">
+         <ul className="navbar-item">
+            <li className="navbar-item">
               <Link to="/dashboard" style={{color: "snow", fontWeight: "bold"}}>Dashboard</Link>
             </li>
-            <li className="nav-item">
+            <li className="navbar-item">
               <Link to="/profile" style={{color: "snow", fontWeight: "bold"}}>Profile</Link>
             </li>
           </ul>
-          <ul className="nav navbar-nav navbar-right">
-            <span className="nav navbar-nav navbar-right">
-          {authStore.user ? (
-            <Logout />
-          ) : (
-            <Link to="/login" style={{color: "snow", fontWeight: "bold"}}>
-              <button className="btn btn-default align-self-end" style={{backgroundColor: "transparent", fontSize: 14 ,color: "snow", fontWeight: "bold", borderColor: "snow"}} >Login</button>
-            </Link>
-          )}
+          <span className="navbar-item">
+              {authStore.user ? (
+                <Logout />
+              ) : (
+              <Link to="/login" style={{color: "snow", fontWeight: "bold"}}>
+                <button className="btn btn-default align-self-end" style={{backgroundColor: "transparent", fontSize: 14 ,color: "snow", fontWeight: "bold", borderColor: "snow"}} >Login</button>
+              </Link>
+              )}
           </span>
-          </ul>
+        </div>
       </nav>
     );
   }

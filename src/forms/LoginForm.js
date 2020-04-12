@@ -26,12 +26,12 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="col-5 row-10 center mx-auto">
+      <div className="col-5 row-60 center mx-auto">
         <div className="card" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username</label>
+                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -39,7 +39,7 @@ class Login extends Component {
                   value={username}
                   name="username"
                   placeholder=""
-                  style={{color: "snow"}}
+                  style={{color: "darkgreen", marginBottom:50}}
                   onChange={this.handleChange}
                 />
                 
@@ -53,12 +53,12 @@ class Login extends Component {
                   value={password}
                   name="password"
                   placeholder=""
-                  color= "darkgreen"
+                  style={{color: "darkgreen", marginBottom:50}}
                   onChange={this.handleChange}
                 />
                 
               </div>
-              <button type="submit" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
+              <button type="submit" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
                 Login
               </button>
               <Link to="/signup" className="btn btn-link my-2 my-sm-0" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
