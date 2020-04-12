@@ -11,7 +11,7 @@ class MenuStore {
       const menu = res.data.menu;
       this.menu = menu;
       this.loading = false;
-      console.log("menu", this.menu);
+      console.log("menu", menu);
     } catch (err) {
       console.error(err);
     }
