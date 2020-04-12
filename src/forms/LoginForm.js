@@ -26,7 +26,7 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="col-5 row-60 center mx-auto">
+      <div className="col-5 row-60 mx-auto">
         <div className="card" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>

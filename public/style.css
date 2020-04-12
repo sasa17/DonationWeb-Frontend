@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #f5fdff;
+  background: snow;
 }
 
 #app {
@@ -44,14 +44,14 @@ td button.btn {
 }
 
 body {
-  background: -webkit-linear-gradient(left, #b6b1ff, #d6f6ff);
+  background: snow;
 }
 .emp-profile {
   padding: 3%;
   margin-top: 3%;
   margin-bottom: 3%;
   border-radius: 0.5rem;
-  background: #fff;
+  background: snow;
 }
 .profile-img {
   text-align: center;

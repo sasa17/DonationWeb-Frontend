@@ -29,12 +29,12 @@ class Profile extends Component {
       <MenuItem menu={item} key={item.id} />
     ));
     return (
-      <div className="container">
-        <h2 className="font-bold leading-normal mb-2 text-gray-800 mb-2 center" style={{fontSize: 32, color: "darkgreen"}}>
+      <div className="container-fluid">
+        <h2 className="font-bold mt-2 center" style={{fontSize: 32, color: "darkgreen"}}>
         {profileStore.profile.name} Profile
           </h2>
-        <div className="row left">
-          <div className="col-7">
+        <div className="row">
+          <div className="col-md-4 col-md-push-8">
             <div className="card width: 18rem;">
               <img
                 className="img-responsive mx-1 my-5 center"
@@ -55,7 +55,7 @@ class Profile extends Component {
               </div>
             </div>
             </div>
-            <div className="col" style={{flexDirection: "row-reverse"}}>
+            <div className="col-md-8 col-md-pull-4">
               <div className="card">
                 {items}
                 <button className="btn-success rounded btn-block">
