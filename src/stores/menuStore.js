@@ -22,11 +22,18 @@ class MenuStore {
     this.menu.forEach((item) => (total += item.total));
     return total;
   }
+
+  get total_meals() {
+    let total = 0;
+    this.menu.forEach((item) => (total += item.available_qty));
+    return total;
+  }
 }
 decorate(MenuStore, {
   menu: observable,
   loading: observable,
   total: computed,
+  total_meals: computed,
 });
 
 const menuStore = new MenuStore();

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MenuItem = ({ menu }) => {
+  console.log("newmenu", menu);
   return (
     <div className="card-body">
       <h5 className="card-text">{menu.name}</h5>
