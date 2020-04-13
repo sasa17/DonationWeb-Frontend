@@ -23,6 +23,15 @@ class DonationBasketStore {
     }
   };
 
+  createDonationBasket = async () => {
+    try {
+      await instance.post("donationbasket/add/");
+      alert("Menu Saved!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   get total_year() {
     let total_year = 0.0;
     let today = new Date();
@@ -38,7 +47,10 @@ class DonationBasketStore {
     let total_month = 0.0;
     let today = new Date();
     this.donation_baskets.forEach((item) => {
-      if (new Date(item.date).getMonth() === today.getMonth()) {
+      if (
+        new Date(item.date).getFullYear() === today.getFullYear() &&
+        new Date(item.date).getMonth() === today.getMonth()
+      ) {
         total_month += Number(item.total_donation_recieved);
       }
     });
@@ -55,6 +67,7 @@ class DonationBasketStore {
     let today = new Date();
     this.donation_baskets.forEach((item) => {
       if (
+        new Date(item.date).getFullYear() === today.getFullYear() &&
         new Date(item.date).getMonth() === today.getMonth() &&
         getWeekOfMonth(new Date(item.date)) === getWeekOfMonth(today)
       ) {
@@ -82,6 +95,61 @@ class DonationBasketStore {
     let meals = (this.total_daily * menuStore.total_meals) / menuStore.total;
     return parseInt(meals);
   }
+
+  get past_1_month() {
+    let month1 = 0.0;
+    let today = new Date();
+    this.donation_baskets.forEach((item) => {
+      if (new Date(item.date).getMonth() === today.getMonth() - 1) {
+        month1 += Number(item.total_donation_recieved);
+      }
+    });
+    return month1;
+  }
+
+  get past_2_month() {
+    let month2 = 0.0;
+    let today = new Date();
+    this.donation_baskets.forEach((item) => {
+      if (new Date(item.date).getMonth() === today.getMonth() - 2) {
+        month2 += Number(item.total_donation_recieved);
+      }
+    });
+    return month2;
+  }
+
+  get restaurant_total_past1() {
+    let month1 = 0.0;
+    let today = new Date();
+    this.donation_baskets.forEach((item) => {
+      if (new Date(item.date).getMonth() === today.getMonth() - 1) {
+        month1 += Number(item.single_restaurant_total);
+      }
+    });
+    return month1;
+  }
+
+  get restaurant_total_past2() {
+    let month2 = 0.0;
+    let today = new Date();
+    this.donation_baskets.forEach((item) => {
+      if (new Date(item.date).getMonth() === today.getMonth() - 2) {
+        month2 += Number(item.single_restaurant_total);
+      }
+    });
+    return month2;
+  }
+
+  get restaurant_total() {
+    let month = 0.0;
+    let today = new Date();
+    this.donation_baskets.forEach((item) => {
+      if (new Date(item.date).getMonth() === today.getMonth()) {
+        month += Number(item.single_restaurant_total);
+      }
+    });
+    return month;
+  }
 }
 decorate(DonationBasketStore, {
   donation_baskets: observable,
@@ -90,6 +158,7 @@ decorate(DonationBasketStore, {
   total_year: computed,
   total_month: computed,
   total_weekly: computed,
+  total_daily: computed,
   meals: computed,
 });
 

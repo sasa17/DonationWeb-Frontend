@@ -7,11 +7,19 @@ class MenuStore {
 
   fetchAllMenuItems = async (restaurantID) => {
     try {
-      const res = await instance.get(`restaurant/${restaurantID}`);
+      const res = await instance.get(`restaurant/${restaurantID}/`);
       const menu = res.data.menu;
       this.menu = menu;
       this.loading = false;
-      console.log("menu", menu);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  updateMenuItem = async (menu, quantity) => {
+    try {
+      await instance.put(`menu/${menu.id}/`, { available_qty: quantity });
+      alert(`${quantity} ${menu.name}'s Added`);
     } catch (err) {
       console.error(err);
     }

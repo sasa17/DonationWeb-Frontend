@@ -3,31 +3,42 @@ import { Line, Doughnut, Bar } from "react-chartjs-2";
 import { ProgressBar } from "react-bootstrap";
 import donationBasketStore from "./stores/donationBasketStore";
 import menuStore from "./stores/menuStore";
+import { observer } from "mobx-react";
 
 export class Dashboard extends Component {
-  componentDidMount() {
-    donationBasketStore.fetchAllDonationBaskets();
+  async componentDidMount() {
+    await donationBasketStore.fetchAllDonationBaskets();
   }
   areaData = {
     labels: ["0", "1", "2", "3"],
     datasets: [
       {
         label: "Total Required",
-        data: [0, 25, 8, 65],
+        data: [
+          0,
+          donationBasketStore.restaurant_total,
+          donationBasketStore.restaurant_total_past1,
+          donationBasketStore.restaurant_total_past2,
+        ],
         backgroundColor: "#2196f3",
         borderColor: "#0c83e2",
         borderWidth: 1,
         fill: true,
-        datasetKeyProvider: "key1",
+        datasetKeyProvider: "key2",
       },
       {
         label: "Total Donations Received",
-        data: [0, 15, 50, 75],
+        data: [
+          0,
+          donationBasketStore.total_month,
+          donationBasketStore.past_1_month,
+          donationBasketStore.past_2_month,
+        ],
         backgroundColor: "#19d895",
         borderColor: "#15b67d",
         borderWidth: 1,
         fill: true,
-        datasetKeyProvider: "key2",
+        datasetKeyProvider: "key1",
       },
     ],
   };
@@ -44,8 +55,8 @@ export class Dashboard extends Component {
           ticks: {
             beginAtZero: true,
             min: 0,
-            max: 200,
-            stepSize: 50,
+            max: 1000,
+            stepSize: 250,
           },
         },
       ],
@@ -200,9 +211,16 @@ export class Dashboard extends Component {
     if (donationBasketStore.loading) return <h1>Loading</h1>;
     return (
       <div>
+        <h2
+          className="font-bold leading-normal mb-2 text-gray-800 mb-2 center mt-2"
+          style={{ fontSize: 50, color: "darkgreen" }}
+        >
+          Dashboard
+        </h2>
         <div className="row proBanner">
           <div className="col-12"></div>
         </div>
+
         <div className="row">
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 grid-margin stretch-card">
             <div className="card card-statistics">
@@ -395,7 +413,7 @@ export class Dashboard extends Component {
                       Meals Donated
                     </h4>
                     <h1 className="font-weight-medium mb-0 text-dark">
-                      {donationBasketStore.meals} Meals
+                      {donationBasketStore.meals | 0} Meals
                     </h1>
                   </div>
                   {/* <div className="col-md-5 d-flex align-items-end mt-4 mt-md-0">
@@ -414,4 +432,4 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default observer(Dashboard);
