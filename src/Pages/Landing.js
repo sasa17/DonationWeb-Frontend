@@ -3,9 +3,9 @@ import React, { Component } from "react";
 class Landing extends Component {
   render() {
     return (
-      <div class="container-fluid">
-        <div class="media container-fluid col-2 row-1 position-relative">
-      <img src={require("../FeedForward.png")} className="w-100 h-100" alt="logo"/>
+      <div class="container-fluid row d-flex">
+        <div class="media container-fluid col-md-2 position-relative">
+      <img src={require("../FeedForward.png")} style={{width: 450, height: 450, alignSelf: "center"}} alt="logo"/>
       </div>    
       <div class="row">
         <div class="col-sm-1">
