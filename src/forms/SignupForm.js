@@ -27,11 +27,14 @@ class Signup extends Component {
     if (authStore.user) return <Redirect to="/" />;
 
     return (
-      <div className="col-auto row-auto m-auto">
-        <div className="card" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
-          <div className="card-body">
+      <div className="col-auto row-auto m-auto position-relative">
+        <div class="media container-fluid col-2 row-1 position-relative">
+      <img src={require("../FeedForward-wordless.png")} className="w-100 h-100" alt="logo"/>
+      </div>
+        <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
+          <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div className="form-group position-relative">
                 <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
                 <input
                   type="text"
@@ -44,7 +47,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group position-relative">
                 <label htmlFor="email" style={{color: "darkgreen", fontSize: 18}}>Email:</label>
                 <input
                   type="email"
@@ -57,7 +60,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group position-relative">
                 <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password:</label>
                 <input
                   type="password"
@@ -71,10 +74,10 @@ class Signup extends Component {
                 />
               </div>
 
-              <button type="submit" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
+              <button type="submit" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
                 Signup
               </button>
-              <Link to="/login" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
+              <Link to="/login" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
                 I already have an account
               </Link>
             </form>

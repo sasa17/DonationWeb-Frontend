@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
 // import { Sparklines, SparklinesBars } from "react-sparklines";
 import { ProgressBar} from "react-bootstrap";
-
+import { Redirect } from "react-router-dom";
+import authStore from "../stores/authStore";
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';
 
 export class Dashboard extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -276,6 +278,7 @@ export class Dashboard extends Component {
   }
 
   render() {
+    if (!authStore.user) return <Redirect to="/login" />;
     return (
       <div>
         <div className="row proBanner">

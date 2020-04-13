@@ -8,22 +8,26 @@ import Logout from "./Logout";
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light mb-3" style={{backgroundColor: 'darkgreen'}}>
+      <nav className="navbar fixed-top position-relative navbar-expand-lg navbar-light mb-3" style={{backgroundColor: 'darkgreen'}}>
       <div className="container-fluid">
-        <h1 className="navbar-brand mr-3" style={{fontWeight: "bold", color: "snow", marginLeft: 15, fontSize: 34}}>Feed Forward</h1>
-        <div className="navbar-nav ml-auto">
-         <ul className="navbar-item ">
+      {authStore.user ? (<Link to="/profile">
+      <img className="navbar-brand position-relative mr-3" src={require("./FeedForward-Inverted.png")} style={{width: 100}} alt="logo"/>
+        </Link>
+        ):(<Link to="/home"><img className="navbar-brand position-relative mr-3" src={require("./FeedForward-Inverted.png")} style={{width: 100}} alt="logo"/>
+        </Link>)}
+        <div className="navbar-nav ml-auto position-relative">
+         <ul className="navbar-item position-relative">
            {authStore.user && (
              <>
-            <li className="navbar-item">
+            <li className="navbar-item position-relative">
               <Link to="/dashboard" style={{color: "snow", fontWeight: "bold"}}>Dashboard</Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/profile" style={{color: "snow", fontWeight: "bold"}}>Profile</Link>
-            </li>
             </>)}
+            <li className="navbar-item position-relative">
+              <Link to="/contact" style={{color: "snow", fontWeight: "bold"}}>Contact</Link>
+            </li>
           </ul>
-          <span className="navbar-item">
+          <span className="navbar-item position-relative">
               {authStore.user ? (
                 <Logout />
               ) : (
@@ -33,7 +37,7 @@ class Navbar extends Component {
               )}
           </span>
         </div>
-        </div>
+      </div>
       </nav>
     );
   }

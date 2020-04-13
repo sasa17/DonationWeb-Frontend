@@ -26,11 +26,14 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="col-5 row-60 mx-auto">
-        <div className="card" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
-          <div className="card-body">
+      <div className="col-5 row-60 mx-auto position-relative">
+        <div class="media container-fluid col-md-6 row-1 position-relative">
+      <img src={require("../FeedForward-wordless.png")} className="w-100 h-100" alt="logo"/>
+      </div>
+        <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
+          <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div className="form-group position-relative">
                 <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
                 <input
                   type="text"
@@ -44,7 +47,7 @@ class Login extends Component {
                 />
                 
               </div>
-              <div className="form-group">
+              <div className="form-group position-relative">
                 <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password: </label>
                 <input
                   type="password"
@@ -58,10 +61,10 @@ class Login extends Component {
                 />
                 
               </div>
-              <button type="submit" className="btn" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
+              <button type="submit" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", alignSelf: "center", marginRight:50}}>
                 Login
               </button>
-              <Link to="/signup" className="btn btn-link my-2 my-sm-0" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
+              <Link to="/signup" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", alignSelf: "center"}}>
                 Signup
               </Link>
             </form>
