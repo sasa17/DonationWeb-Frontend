@@ -3,11 +3,11 @@ import { observer } from "mobx-react";
 import { Redirect } from "react-router-dom";
 
 // Store
-import profileStore from "../stores/profileStore";
-import menuStore from "../stores/menuStore";
-import authStore from "../stores/authStore";
+import profileStore from "../Stores/profileStore";
+import menuStore from "../Stores/menuStore";
+import authStore from "../Stores/authStore";
 import MenuItem from "./MenuItem";
-import donationBasketStore from "../stores/donationBasketStore";
+
 
 class Profile extends Component {
   async componentDidMount() {
@@ -23,24 +23,19 @@ class Profile extends Component {
     const items = menuStore.menu.map((item) => (
       <MenuItem menu={item} key={item.id} />
     ));
-    const handleAddMenuItems = () => {
-      donationBasketStore.createDonationBasket();
-    };
     return (
       <div className="container-fluid position-relative">
-        <div class="media container-fluid col-md-6 row-1 position-relative">
+        <div class="text-center">
           <img
-            src={require("../FeedForward-wordless.png")}
-            className="w-100 h-100"
+            className="img-fluid"
+            src={require("../Images/FeedForward-wordless.png")}
+            style={{width: 250, height: 200, alignSelf: "center"}}
             alt="logo"
           />
+        <h1 style={{ fontSize: 48, color: "darkgreen", fontWeight: "bold" }}>
+          Profile
+        </h1>
         </div>
-        <h2
-          className="mt-2 center"
-          style={{ fontSize: 32, color: "darkgreen", fontWeight: "bold" }}
-        >
-          {profileStore.profile.name} Profile
-        </h2>
         <div className="row">
           <div className="col-md-4 col-md-push-8">
             <div className="card width: 18rem;">
@@ -67,10 +62,20 @@ class Profile extends Component {
             </div>
           </div>
           <div className="col-md-8 col-md-pull-4">
-            <div className="card">
-              {items}
+            <table className="mt-3 table">
+              <thead>
+                <tr>
+                  <th style={{ color: "darkgreen", fontWeight: "bold", fontSize: 18 }}>Meal</th>
+                  <th style={{ color: "darkgreen", fontWeight: "bold", fontSize: 18 }}>Quantity available</th>
+                  <th style={{ color: "darkgreen", fontWeight: "bold", fontSize: 18 }}>Submit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items}
+              </tbody>
+              </table>
               <button
-                className="btn-success rounded btn-block"
+                className="btn rounded col"
                 style={{ backgroundColor: "darkgreen", color: "snow" }}
               >
                 Add Menu Items
@@ -78,7 +83,6 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

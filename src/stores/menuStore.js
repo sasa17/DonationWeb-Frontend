@@ -1,4 +1,4 @@
-import { decorate, observable, computed } from "mobx";
+import { decorate, observable, computed } from "../../node_modules/mobx";
 import { instance } from "./instance";
 
 class MenuStore {

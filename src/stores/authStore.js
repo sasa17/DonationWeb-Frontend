@@ -1,5 +1,5 @@
-import { decorate, observable } from "mobx";
-import jwt_decode from "jwt-decode";
+import { decorate, observable } from "../../node_modules/mobx";
+import jwt_decode from "../../node_modules/jwt-decode";
 import { instance } from "./instance";
 
 class AuthStore {
