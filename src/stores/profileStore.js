@@ -7,10 +7,11 @@ class ProfileStore {
 
   fetchProfileData = async () => {
     try {
+      const token = localStorage.getItem("token");
       console.log("newtoken", localStorage.getItem("token"));
       const res = await instance.get("restaurant/profile/", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       const profile = res.data;

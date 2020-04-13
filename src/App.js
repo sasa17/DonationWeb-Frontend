@@ -3,13 +3,13 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 
 // Components
-import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 import SignupForm from "./forms/SignupForm";
 import LoginForm from "./forms/LoginForm";
 import Profile from "./Profile";
 import Dashboard from "./Dashboard";
 
-import authStore from "./stores/authStore";
+// import authStore from "./stores/authStore";
 
 const App = () => {
   const getView = () => {
@@ -25,10 +25,12 @@ const App = () => {
   };
 
   return (
-    <div id="app" className="container-fluid">
+    <div id="app" className="container-fluid row-fluid" style={{backgroundColor: "snow"}}>
       <div className="row">
-        <div className="col-2">{authStore.user && <Sidebar />}</div>
-        <div className="content col-10">{getView()}</div>
+        <Navbar />
+        </div>
+      <div className="content col-10 row">
+        {getView()}
       </div>
     </div>
   );
