@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { observer } from "mobx-react";
+import React, { Component } from "../../node_modules/react";
+import { Link, Redirect } from "../../node_modules/react-router-dom";
+import { observer } from "../../node_modules/mobx-react";
 
 // Store
-import authStore from "../stores/authStore";
+import authStore from "../Stores/authStore";
 
 class Signup extends Component {
   state = {
@@ -28,9 +28,14 @@ class Signup extends Component {
 
     return (
       <div className="col-5 row-60 mx-auto position-relative">
-        <div class="media container-fluid col-md-6 row-1 position-relative">
-      <img src={require("../FeedForward.png")} className="w-100 h-100" alt="logo"/>
-      </div>
+        <div class="text-center">
+          <img
+            className="img-fluid"
+            src={require("../Images/FeedForward.png")}
+            style={{width: 250, height: 250, alignSelf: "center"}}
+            alt="logo"
+          />
+        </div>
         <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
           <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>

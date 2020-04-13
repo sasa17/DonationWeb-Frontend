@@ -3,10 +3,10 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 
 // Components
-import Navbar from "./Navbar";
-import SignupForm from "./forms/SignupForm";
-import LoginForm from "./forms/LoginForm";
-import Contact from "./forms/ContactForm";
+import Navbar from "./Components/Navbar";
+import SignupForm from "./Forms/SignupForm";
+import LoginForm from "./Forms/LoginForm";
+import Contact from "./Forms/ContactForm";
 import Profile from "./Pages/Profile";
 import Dashboard from "./Pages/Dashboard";
 import Landing from "./Pages/Landing";

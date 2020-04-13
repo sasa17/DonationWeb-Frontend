@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import menuStore from "../stores/menuStore";
-// import { Link } from "react-router-dom";
+import menuStore from "../Stores/menuStore";
 
 class MenuItem extends Component {
   state = {
@@ -8,7 +7,7 @@ class MenuItem extends Component {
   };
   render() {
     if (this.state.quantity < 0) {
-      alert("Please enter a valid number");
+      alert("Minimum quantity reached");
       this.setState({ quantity: this.state.quantity + 1 });
     }
     const handleToggleAdd = () => {
@@ -24,16 +23,18 @@ class MenuItem extends Component {
     };
 
     return (
-      <div className="card-body">
-        <ul className="list-group">
-          <li className="list-group-item" style={{ color: "darkgreen" }}>
+      <tr>
+          <td style={{ color: "darkgreen", fontSize: 16 }}>
             {this.props.menu.name}
-            <button
+            </td>
+          <td>
+          <button
               type="button"
-              className="btn btn-success ml-5 mr-2"
-              onClick={handleToggleAdd}
+              className="btn"
+              onClick={handleToggleSubtract}
+              style={{backgroundColor: "darkgreen"}}
             >
-              +{" "}
+              -{" "}
             </button>
             <input
               className="center"
@@ -46,21 +47,24 @@ class MenuItem extends Component {
             />
             <button
               type="button"
-              className="btn btn-danger mr-5 ml-2"
-              onClick={handleToggleSubtract}
+              className="btn"
+              onClick={handleToggleAdd}
+              style={{backgroundColor: "darkgreen"}}
             >
-              -{" "}
+              +{" "}
             </button>
+            </td>
+            <td>
             <button
               type="button"
-              className="btn btn-sucess right ml-5"
+              className="btn"
               onClick={handleAddItem}
+              style={{backgroundColor: "darkgreen", color: "snow"}}
             >
               Add Item
             </button>
-          </li>
-        </ul>
-      </div>
+            </td>
+          </tr>
     );
   }
 }
