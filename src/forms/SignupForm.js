@@ -27,51 +27,57 @@ class Signup extends Component {
     if (authStore.user) return <Redirect to="/" />;
 
     return (
-      <div className="col-6 mx-auto">
-        <div className="card my-5">
-          <div className="card-body">
+      <div className="col-auto row-auto m-auto position-relative">
+        <div class="media container-fluid col-2 row-1 position-relative">
+      <img src={require("../FeedForward-wordless.png")} className="w-100 h-100" alt="logo"/>
+      </div>
+        <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
+          <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
+              <div className="form-group position-relative">
+                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
                 <input
                   type="text"
                   className="form-control"
                   id="username"
                   value={username}
                   name="username"
-                  placeholder="Username"
+                  placeholder=""
+                  style={{color: "darkgreen", marginBottom:50}}
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
+              <div className="form-group position-relative">
+                <label htmlFor="email" style={{color: "darkgreen", fontSize: 18}}>Email:</label>
                 <input
                   type="email"
                   className="form-control"
                   id="email"
                   value={email}
                   name="email"
-                  placeholder="Email"
+                  placeholder=""
+                  style={{color: "darkgreen", marginBottom:50}}
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
+              <div className="form-group position-relative">
+                <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password:</label>
                 <input
                   type="password"
                   className="form-control"
                   id="password"
                   value={password}
                   name="password"
-                  placeholder="Password"
+                  placeholder=""
+                  style={{color: "darkgreen", marginBottom:50}}
                   onChange={this.handleChange}
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
                 Signup
               </button>
-              <Link to="/login" className="btn btn-link my-2 my-sm-0">
+              <Link to="/login" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
                 I already have an account
               </Link>
             </form>
