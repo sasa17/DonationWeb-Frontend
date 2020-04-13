@@ -7,7 +7,7 @@ import profileStore from "../stores/profileStore";
 import menuStore from "../stores/menuStore";
 import authStore from "../stores/authStore";
 import MenuItem from "./MenuItem";
-import donationBasketStore from "./stores/donationBasketStore";
+import donationBasketStore from "../stores/donationBasketStore";
 
 class Profile extends Component {
   async componentDidMount() {
@@ -27,14 +27,20 @@ class Profile extends Component {
       donationBasketStore.createDonationBasket();
     };
     return (
-
       <div className="container-fluid position-relative">
         <div class="media container-fluid col-md-6 row-1 position-relative">
-      <img src={require("../FeedForward-wordless.png")} className="w-100 h-100" alt="logo"/>
-      </div>
-        <h2 className="mt-2 center" style={{fontSize: 32, color: "darkgreen", fontWeight: "bold"}}>
-        {profileStore.profile.name} Profile
-          </h2>
+          <img
+            src={require("../FeedForward-wordless.png")}
+            className="w-100 h-100"
+            alt="logo"
+          />
+        </div>
+        <h2
+          className="mt-2 center"
+          style={{ fontSize: 32, color: "darkgreen", fontWeight: "bold" }}
+        >
+          {profileStore.profile.name} Profile
+        </h2>
         <div className="row">
           <div className="col-md-4 col-md-push-8">
             <div className="card width: 18rem;">
@@ -42,40 +48,35 @@ class Profile extends Component {
                 className="img-responsive mx-1 my-5 center"
                 src={profileStore.profile.image}
                 alt={profileStore.profile.name}
-                style={{resizeMode:"contain"}}
+                style={{ resizeMode: "contain" }}
               />
               <div className="card-body">
-              <h5 className="card-title" style={{color: "darkgreen", fontWeight: "bold"}}>
+                <h5
+                  className="card-title"
+                  style={{ color: "darkgreen", fontWeight: "bold" }}
+                >
                   {profileStore.profile.name}
                 </h5>
-                <p className="card-text" style={{color: "darkgreen"}}>
+                <p className="card-text" style={{ color: "darkgreen" }}>
                   {profileStore.profile.description}
                 </p>
-                <p className="card-text" style={{color: "darkgreen"}}>
+                <p className="card-text" style={{ color: "darkgreen" }}>
                   Branch: {profileStore.profile.location}
                 </p>
               </div>
             </div>
-            </div>
-            <div className="col-md-8 col-md-pull-4">
-              <div className="card">
-                {items}
-                <button className="btn-success rounded btn-block" style={{backgroundColor: "darkgreen", color: "snow"}}>
-                  Add Menu Items
-                </button>
-              </div>
+          </div>
+          <div className="col-md-8 col-md-pull-4">
+            <div className="card">
+              {items}
+              <button
+                className="btn-success rounded btn-block"
+                style={{ backgroundColor: "darkgreen", color: "snow" }}
+              >
+                Add Menu Items
+              </button>
             </div>
           </div>
-        </div>
-
-        <div className="card right" style={{ width: "600px" }}>
-          {items}
-          <button
-            className="btn-success rounded btn-block"
-            onClick={handleAddMenuItems}
-          >
-            Add Menu Items
-          </button>
         </div>
       </div>
     );
