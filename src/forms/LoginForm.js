@@ -34,7 +34,12 @@ class Login extends Component {
           <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group position-relative">
-                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
+                <label
+                  htmlFor="username"
+                  style={{ color: "darkgreen", fontSize: 18 }}
+                >
+                  Username:
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -42,13 +47,17 @@ class Login extends Component {
                   value={username}
                   name="username"
                   placeholder=""
-                  style={{color: "darkgreen", marginBottom:50}}
+                  style={{ color: "darkgreen", marginBottom: 50 }}
                   onChange={this.handleChange}
                 />
-                
               </div>
               <div className="form-group position-relative">
-                <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password: </label>
+                <label
+                  htmlFor="password"
+                  style={{ color: "darkgreen", fontSize: 18 }}
+                >
+                  Password:{" "}
+                </label>
                 <input
                   type="password"
                   className="form-control"
@@ -56,15 +65,33 @@ class Login extends Component {
                   value={password}
                   name="password"
                   placeholder=""
-                  style={{color: "darkgreen", marginBottom:50}}
+                  style={{ color: "darkgreen", marginBottom: 50 }}
                   onChange={this.handleChange}
                 />
-                
               </div>
-              <button type="submit" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", alignSelf: "center", marginRight:50}}>
+              <button
+                type="submit"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                  alignSelf: "center",
+                  marginRight: 50,
+                }}
+              >
                 Login
               </button>
-              <Link to="/signup" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", alignSelf: "center"}}>
+              <Link
+                to="/signup"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                  alignSelf: "center",
+                }}
+              >
                 Signup
               </Link>
             </form>

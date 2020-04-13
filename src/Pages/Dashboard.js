@@ -1,114 +1,46 @@
 import React, { Component } from "react";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
-// import { Sparklines, SparklinesBars } from "react-sparklines";
-import { ProgressBar} from "react-bootstrap";
+import { ProgressBar } from "react-bootstrap";
+import donationBasketStore from "../stores/donationBasketStore";
 import { Redirect } from "react-router-dom";
 import authStore from "../stores/authStore";
-// import DatePicker from 'react-datepicker';
-// import { Dropdown } from 'react-bootstrap';
+import menuStore from "../stores/menuStore";
+import { observer } from "mobx-react";
 
 export class Dashboard extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: new Date(),
-      todos: [
-        {
-          id: 1,
-          task: "Pick up kids from school",
-          isCompleted: false,
-        },
-        {
-          id: 2,
-          task: "Prepare for presentation",
-          isCompleted: false,
-        },
-        {
-          id: 3,
-          task: "Print Statements",
-          isCompleted: false,
-        },
-        {
-          id: 4,
-          task: "Create invoice",
-          isCompleted: false,
-        },
-        {
-          id: 5,
-          task: "Call John",
-          isCompleted: false,
-        },
-      ],
-      inputValue: "",
-    };
-    this.statusChangedHandler = this.statusChangedHandler.bind(this);
-    this.addTodo = this.addTodo.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-    this.inputChangeHandler = this.inputChangeHandler.bind(this);
-  }
-  statusChangedHandler(event, id) {
-    const todo = { ...this.state.todos[id] };
-    todo.isCompleted = event.target.checked;
-
-    const todos = [...this.state.todos];
-    todos[id] = todo;
-
-    this.setState({
-      todos: todos,
-    });
-  }
-
-  addTodo(event) {
-    event.preventDefault();
-
-    const todos = [...this.state.todos];
-    todos.unshift({
-      id: todos.length ? todos[todos.length - 1].id + 1 : 1,
-      task: this.state.inputValue,
-      isCompleted: false,
-    });
-
-    this.setState({
-      todos: todos,
-      inputValue: "",
-    });
-  }
-
-  removeTodo(index) {
-    const todos = [...this.state.todos];
-    todos.splice(index, 1);
-
-    this.setState({
-      todos: todos,
-    });
-  }
-
-  inputChangeHandler(event) {
-    this.setState({
-      inputValue: event.target.value,
-    });
+  async componentDidMount() {
+    await donationBasketStore.fetchAllDonationBaskets();
   }
   areaData = {
-    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    labels: ["0", "1", "2", "3"],
     datasets: [
       {
-        label: "Product-1",
-        data: [3, 3, 8, 5, 7, 4, 6, 4, 6, 3],
+        label: "Total Required",
+        data: [
+          0,
+          donationBasketStore.restaurant_total,
+          donationBasketStore.restaurant_total_past1,
+          donationBasketStore.restaurant_total_past2,
+        ],
         backgroundColor: "#2196f3",
         borderColor: "#0c83e2",
         borderWidth: 1,
         fill: true,
-        datasetKeyProvider: "key1",
+        datasetKeyProvider: "key2",
       },
       {
-        label: "Product-2",
-        data: [7, 5, 14, 7, 12, 6, 10, 6, 11, 5],
+        label: "Total Donations Received",
+        data: [
+          0,
+          donationBasketStore.total_month,
+          donationBasketStore.past_1_month,
+          donationBasketStore.past_2_month,
+        ],
         backgroundColor: "#19d895",
         borderColor: "#15b67d",
         borderWidth: 1,
         fill: true,
-        datasetKeyProvider: "key2",
+        datasetKeyProvider: "key1",
       },
     ],
   };
@@ -125,8 +57,8 @@ export class Dashboard extends Component {
           ticks: {
             beginAtZero: true,
             min: 0,
-            max: 20,
-            stepSize: 5,
+            max: 1000,
+            stepSize: 250,
           },
         },
       ],
@@ -162,12 +94,12 @@ export class Dashboard extends Component {
   usersDoughnutChartData = {
     datasets: [
       {
-        data: [80, 34, 100],
-        backgroundColor: ["#19d895", "#2196f3", "#dde4eb"],
-        borderColor: ["#19d895", "#2196f3", "#dde4eb"],
+        data: [donationBasketStore.total_daily, menuStore.total],
+        backgroundColor: ["#19d895", "#2196f3"],
+        borderColor: ["#19d895", "#2196f3"],
       },
     ],
-    labels: ["Request", "Email"],
+    labels: ["Donations Receieved", "Total Donations Required"],
   };
 
   usersDoughnutChartOptions = {
@@ -278,12 +210,21 @@ export class Dashboard extends Component {
   }
 
   render() {
+    if (donationBasketStore.loading) return <h1>Loading</h1>;
     if (!authStore.user) return <Redirect to="/login" />;
+
     return (
       <div>
+        <h2
+          className="font-bold leading-normal mb-2 text-gray-800 mb-2 center mt-2"
+          style={{ fontSize: 50, color: "darkgreen" }}
+        >
+          Dashboard
+        </h2>
         <div className="row proBanner">
           <div className="col-12"></div>
         </div>
+
         <div className="row">
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 grid-margin stretch-card">
             <div className="card card-statistics">
@@ -293,10 +234,10 @@ export class Dashboard extends Component {
                     <i className="mdi mdi-cube text-danger icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Total Revenue</p>
+                    <p className="mb-0 text-right text-dark">Daily Donations</p>
                     <div className="fluid-container">
                       <h3 className="font-weight-medium text-right mb-0 text-dark">
-                        $65,650
+                        KWD {donationBasketStore.total_daily}
                       </h3>
                     </div>
                   </div>
@@ -306,7 +247,8 @@ export class Dashboard extends Component {
                     className="mdi mdi-alert-octagon mr-1"
                     aria-hidden="true"
                   ></i>{" "}
-                  65% lower growth{" "}
+                  Donations received on {new Date().getDate() - 1}/
+                  {new Date().getMonth()}/{new Date().getFullYear()}{" "}
                 </p>
               </div>
             </div>
@@ -319,10 +261,12 @@ export class Dashboard extends Component {
                     <i className="mdi mdi-receipt text-warning icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Orders</p>
+                    <p className="mb-0 text-right text-dark">
+                      Weekly Donations
+                    </p>
                     <div className="fluid-container">
                       <h3 className="font-weight-medium text-right mb-0 text-dark">
-                        3455
+                        KWD {donationBasketStore.total_weekly}
                       </h3>
                     </div>
                   </div>
@@ -332,7 +276,7 @@ export class Dashboard extends Component {
                     className="mdi mdi-bookmark-outline mr-1"
                     aria-hidden="true"
                   ></i>{" "}
-                  Product-wise sales{" "}
+                  Donations this week{" "}
                 </p>
               </div>
             </div>
@@ -345,17 +289,19 @@ export class Dashboard extends Component {
                     <i className="mdi mdi-poll-box text-success icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Sales</p>
+                    <p className="mb-0 text-right text-dark">
+                      Monthly Donations
+                    </p>
                     <div className="fluid-container">
                       <h3 className="font-weight-medium text-right mb-0 text-dark">
-                        5693
+                        KWD {donationBasketStore.total_month}
                       </h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
                   <i className="mdi mdi-calendar mr-1" aria-hidden="true"></i>{" "}
-                  Weekly Sales{" "}
+                  Donations this month{" "}
                 </p>
               </div>
             </div>
@@ -368,17 +314,19 @@ export class Dashboard extends Component {
                     <i className="mdi mdi-account-box-multiple text-info icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Employees</p>
+                    <p className="mb-0 text-right text-dark">
+                      Yearly Donations
+                    </p>
                     <div className="fluid-container">
                       <h3 className="font-weight-medium text-right mb-0 text-dark">
-                        246
+                        KWD {donationBasketStore.total_year}
                       </h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
                   <i className="mdi mdi-reload mr-1" aria-hidden="true"></i>{" "}
-                  Product-wise sales{" "}
+                  Donations Made in {new Date().getFullYear()}{" "}
                 </p>
               </div>
             </div>
@@ -389,17 +337,8 @@ export class Dashboard extends Component {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <h2 className="card-title mb-0">Product Analysis</h2>
-                  <div className="wrapper d-flex">
-                    <div className="d-flex align-items-center mr-3">
-                      <span className="dot-indicator bg-success"></span>
-                      <p className="mb-0 ml-2 text-muted">Product</p>
-                    </div>
-                    <div className="d-flex align-items-center">
-                      <span className="dot-indicator bg-primary"></span>
-                      <p className="mb-0 ml-2 text-muted">Resources</p>
-                    </div>
-                  </div>
+                  <h2 className="card-title mb-0">Quaterly Donations</h2>
+                  <div className="wrapper d-flex"></div>
                 </div>
                 <div className="chart-container">
                   <Line
@@ -428,29 +367,41 @@ export class Dashboard extends Component {
                   </div>
                   <div className="col-md-7">
                     <h4 className="card-title font-weight-medium mb-0 d-none d-md-block">
-                      Active Users
+                      Daily Donations
                     </h4>
                     <div className="wrapper mt-4">
                       <div className="d-flex justify-content-between mb-2">
                         <div className="d-flex align-items-center">
-                          <p className="mb-0 font-weight-medium">67,550</p>
+                          <p className="mb-0 font-weight-medium">
+                            KWD {menuStore.total}
+                          </p>
                           <small className="text-muted ml-2">
-                            Email account
+                            Total Donations Required
                           </small>
                         </div>
-                        <p className="mb-0 font-weight-medium">80%</p>
+                        <p className="mb-0 font-weight-medium"></p>
                       </div>
-                      <ProgressBar variant="primary" now={80} />
+                      <ProgressBar variant="primary" now={100} />
                     </div>
                     <div className="wrapper mt-4">
                       <div className="d-flex justify-content-between mb-2">
                         <div className="d-flex align-items-center">
-                          <p className="mb-0 font-weight-medium">21,435</p>
-                          <small className="text-muted ml-2">Requests</small>
+                          <p className="mb-0 font-weight-medium">
+                            KWD {donationBasketStore.total_daily}
+                          </p>
+                          <small className="text-muted ml-2">
+                            Donations Receieved
+                          </small>
                         </div>
-                        <p className="mb-0 font-weight-medium">34%</p>
+                        <p className="mb-0 font-weight-medium"></p>
                       </div>
-                      <ProgressBar variant="success" now={34} />
+                      <ProgressBar
+                        variant="success"
+                        now={
+                          (donationBasketStore.total_daily / menuStore.total) *
+                          100
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -463,18 +414,18 @@ export class Dashboard extends Component {
                 <div className="row">
                   <div className="col-md-7">
                     <h4 className="card-title font-weight-medium mb-3">
-                      Amount Due
+                      Meals Donated
                     </h4>
-                    <h1 className="font-weight-medium mb-0 text-dark">$5998</h1>
-                    <p className="text-muted">Milestone Completed</p>
-                    <p className="mb-0">Payment for next week</p>
+                    <h1 className="font-weight-medium mb-0 text-dark">
+                      {donationBasketStore.meals | 0} Meals
+                    </h1>
                   </div>
-                  <div className="col-md-5 d-flex align-items-end mt-4 mt-md-0">
+                  {/* <div className="col-md-5 d-flex align-items-end mt-4 mt-md-0">
                     <Bar
                       data={this.amountDueBarData}
                       options={this.amountDueBarOptions}
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -485,4 +436,4 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default observer(Dashboard);
