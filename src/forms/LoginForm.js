@@ -26,75 +26,82 @@ class Login extends Component {
     if (authStore.user) return <Redirect to="/profile" />;
 
     return (
-      <div className="container">
-        <div className="col-5 row-60 center mx-auto">
-          <div
-            className="card"
-            style={{ borderColor: "darkgreen", backgroundColor: "snow" }}
-          >
-            <div className="card-body">
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <label
-                    htmlFor="username"
-                    style={{ color: "darkgreen", fontSize: 18 }}
-                  >
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    value={username}
-                    name="username"
-                    placeholder=""
-                    style={{ color: "darkgreen", marginBottom: 50 }}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label
-                    htmlFor="password"
-                    style={{ color: "darkgreen", fontSize: 18 }}
-                  >
-                    Password:{" "}
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    name="password"
-                    placeholder=""
-                    style={{ color: "darkgreen", marginBottom: 50 }}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn"
-                  style={{
-                    backgroundColor: "snow",
-                    color: "darkgreen",
-                    borderColor: "darkgreen",
-                    marginRight: 50,
-                  }}
+      <div className="col-5 row-60 mx-auto position-relative">
+        <div class="media container-fluid col-md-6 row-1 position-relative">
+          <img
+            src={require("../FeedForward-wordless.png")}
+            className="w-100 h-100"
+            alt="logo"
+          />
+        </div>
+        <div
+          className="card position-relative"
+          style={{ borderColor: "darkgreen", backgroundColor: "snow" }}
+        >
+          <div className="card-body position-relative">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group position-relative">
+                <label
+                  htmlFor="username"
+                  style={{ color: "darkgreen", fontSize: 18 }}
                 >
-                  Login
-                </button>
-                <Link
-                  to="/signup"
-                  className="btn btn-link my-2 my-sm-0"
-                  style={{
-                    backgroundColor: "snow",
-                    color: "darkgreen",
-                    borderColor: "darkgreen",
-                  }}
+                  Username:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  value={username}
+                  name="username"
+                  placeholder=""
+                  style={{ color: "darkgreen", marginBottom: 50 }}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group position-relative">
+                <label
+                  htmlFor="password"
+                  style={{ color: "darkgreen", fontSize: 18 }}
                 >
-                  Signup
-                </Link>
-              </form>
-            </div>
+                  Password:{" "}
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  name="password"
+                  placeholder=""
+                  style={{ color: "darkgreen", marginBottom: 50 }}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                  alignSelf: "center",
+                  marginRight: 50,
+                }}
+              >
+                Login
+              </button>
+              <Link
+                to="/signup"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                  alignSelf: "center",
+                }}
+              >
+                Signup
+              </Link>
+            </form>
           </div>
         </div>
       </div>

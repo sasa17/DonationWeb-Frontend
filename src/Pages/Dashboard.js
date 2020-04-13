@@ -8,6 +8,96 @@ import { observer } from "mobx-react";
 export class Dashboard extends Component {
   async componentDidMount() {
     await donationBasketStore.fetchAllDonationBaskets();
+
+// import { Sparklines, SparklinesBars } from "react-sparklines";
+import { ProgressBar} from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import authStore from "../stores/authStore";
+// import DatePicker from 'react-datepicker';
+// import { Dropdown } from 'react-bootstrap';
+
+export class Dashboard extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date(),
+      todos: [
+        {
+          id: 1,
+          task: "Pick up kids from school",
+          isCompleted: false,
+        },
+        {
+          id: 2,
+          task: "Prepare for presentation",
+          isCompleted: false,
+        },
+        {
+          id: 3,
+          task: "Print Statements",
+          isCompleted: false,
+        },
+        {
+          id: 4,
+          task: "Create invoice",
+          isCompleted: false,
+        },
+        {
+          id: 5,
+          task: "Call John",
+          isCompleted: false,
+        },
+      ],
+      inputValue: "",
+    };
+    this.statusChangedHandler = this.statusChangedHandler.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
+  }
+  statusChangedHandler(event, id) {
+    const todo = { ...this.state.todos[id] };
+    todo.isCompleted = event.target.checked;
+
+    const todos = [...this.state.todos];
+    todos[id] = todo;
+
+    this.setState({
+      todos: todos,
+    });
+  }
+
+  addTodo(event) {
+    event.preventDefault();
+
+    const todos = [...this.state.todos];
+    todos.unshift({
+      id: todos.length ? todos[todos.length - 1].id + 1 : 1,
+      task: this.state.inputValue,
+      isCompleted: false,
+    });
+
+    this.setState({
+      todos: todos,
+      inputValue: "",
+    });
+  }
+
+  removeTodo(index) {
+    const todos = [...this.state.todos];
+    todos.splice(index, 1);
+
+    this.setState({
+      todos: todos,
+    });
+  }
+
+  inputChangeHandler(event) {
+    this.setState({
+      inputValue: event.target.value,
+    });
+
   }
   areaData = {
     labels: ["0", "1", "2", "3"],
@@ -209,6 +299,8 @@ export class Dashboard extends Component {
 
   render() {
     if (donationBasketStore.loading) return <h1>Loading</h1>;
+    if (!authStore.user) return <Redirect to="/login" />;
+
     return (
       <div>
         <h2
