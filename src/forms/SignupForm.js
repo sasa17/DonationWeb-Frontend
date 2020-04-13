@@ -27,9 +27,9 @@ class Signup extends Component {
     if (authStore.user) return <Redirect to="/" />;
 
     return (
-      <div className="col-auto row-auto m-auto position-relative">
-        <div class="media container-fluid col-2 row-1 position-relative">
-      <img src={require("../FeedForward-wordless.png")} className="w-100 h-100" alt="logo"/>
+      <div className="col-5 row-60 mx-auto position-relative">
+        <div class="media container-fluid col-md-6 row-1 position-relative">
+      <img src={require("../FeedForward.png")} className="w-100 h-100" alt="logo"/>
       </div>
         <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
           <div className="card-body position-relative">
