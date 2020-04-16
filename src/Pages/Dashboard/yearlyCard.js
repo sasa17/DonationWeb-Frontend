@@ -40,7 +40,7 @@ class YearlyCard extends Component {
             </div>
             <p className="text-muted mt-3 mb-0">
               <i className="mdi mdi-reload mr-1" aria-hidden="true"></i>{" "}
-              Donations Made in {new Date().getFullYear()}{" "}
+              Donations receieved in {new Date().getFullYear()}{" "}
             </p>
           </div>
         </div>

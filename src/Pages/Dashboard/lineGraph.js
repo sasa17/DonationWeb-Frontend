@@ -102,7 +102,7 @@ export class LineGraph extends Component {
                     fontWeight: "bold",
                   }}
                 >
-                  Quaterly Donations
+                  Quarterly Donations
                 </h2>
                 <div className="wrapper d-flex"></div>
               </div>
