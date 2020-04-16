@@ -6,7 +6,17 @@ import authStore from "../Stores/authStore";
 
 const Logout = () => {
   return (
-    <button className= "btn" style={{backgroundColor: "transparent", fontSize: 14 ,color: "snow", fontWeight: "bold", borderColor: "snow"}} onClick={authStore.logout}>
+    <button
+      className="btn"
+      style={{
+        backgroundColor: "transparent",
+        fontSize: 14,
+        color: "snow",
+        fontWeight: "bold",
+        borderColor: "snow",
+      }}
+      onClick={authStore.logout}
+    >
       Logout {authStore.user.username}
     </button>
   );

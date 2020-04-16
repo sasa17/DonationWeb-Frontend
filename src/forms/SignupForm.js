@@ -32,15 +32,23 @@ class Signup extends Component {
           <img
             className="img-fluid"
             src={require("../Images/FeedForward.png")}
-            style={{width: 250, height: 250, alignSelf: "center"}}
+            style={{ width: 250, height: 250, alignSelf: "center" }}
             alt="logo"
           />
         </div>
-        <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
+        <div
+          className="card position-relative"
+          style={{ borderColor: "darkgreen", backgroundColor: "snow" }}
+        >
           <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group position-relative">
-                <label htmlFor="username" style={{color: "darkgreen", fontSize: 18}}>Username:</label>
+                <label
+                  htmlFor="username"
+                  style={{ color: "darkgreen", fontSize: 18 }}
+                >
+                  Username:
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -48,12 +56,17 @@ class Signup extends Component {
                   value={username}
                   name="username"
                   placeholder=""
-                  style={{color: "darkgreen", marginBottom:50}}
+                  style={{ color: "darkgreen", marginBottom: 50 }}
                   onChange={this.handleChange}
                 />
               </div>
               <div className="form-group position-relative">
-                <label htmlFor="email" style={{color: "darkgreen", fontSize: 18}}>Email:</label>
+                <label
+                  htmlFor="email"
+                  style={{ color: "darkgreen", fontSize: 18 }}
+                >
+                  Email:
+                </label>
                 <input
                   type="email"
                   className="form-control"
@@ -61,12 +74,17 @@ class Signup extends Component {
                   value={email}
                   name="email"
                   placeholder=""
-                  style={{color: "darkgreen", marginBottom:50}}
+                  style={{ color: "darkgreen", marginBottom: 50 }}
                   onChange={this.handleChange}
                 />
               </div>
               <div className="form-group position-relative">
-                <label htmlFor="password" style={{color: "darkgreen", fontSize: 18}}>Password:</label>
+                <label
+                  htmlFor="password"
+                  style={{ color: "darkgreen", fontSize: 18 }}
+                >
+                  Password:
+                </label>
                 <input
                   type="password"
                   className="form-control"
@@ -74,15 +92,32 @@ class Signup extends Component {
                   value={password}
                   name="password"
                   placeholder=""
-                  style={{color: "darkgreen", marginBottom:50}}
+                  style={{ color: "darkgreen", marginBottom: 50 }}
                   onChange={this.handleChange}
                 />
               </div>
 
-              <button type="submit" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen", marginRight:50}}>
+              <button
+                type="submit"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                  marginRight: 50,
+                }}
+              >
                 Signup
               </button>
-              <Link to="/login" className="btn position-relative" style={{backgroundColor: "snow", color: "darkgreen", borderColor: "darkgreen"}}>
+              <Link
+                to="/login"
+                className="btn position-relative"
+                style={{
+                  backgroundColor: "snow",
+                  color: "darkgreen",
+                  borderColor: "darkgreen",
+                }}
+              >
                 I already have an account
               </Link>
             </form>

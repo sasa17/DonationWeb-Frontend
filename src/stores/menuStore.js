@@ -19,7 +19,7 @@ class MenuStore {
   updateMenuItem = async (menu, quantity) => {
     try {
       await instance.put(`menu/${menu.id}/`, { available_qty: quantity });
-      alert(`${quantity} ${menu.name}'s Added`);
+      alert(`${quantity} ${menu.name} sucessfully added`);
     } catch (err) {
       console.error(err);
     }

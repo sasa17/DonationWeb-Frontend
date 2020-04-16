@@ -8,7 +8,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav
-        className="navbar position-relative navbar-expand-lg navbar-light mb-3"
+        className="navbar position-relative navbar-expand-lg navbar-light"
         style={{ backgroundColor: "darkgreen" }}
       >
         <div className="container-fluid position-relative">
@@ -17,7 +17,7 @@ class Navbar extends Component {
               <img
                 className="navbar-brand position-relative mr-3"
                 src={require("../Images/FeedForward-Inverted.png")}
-                style={{width: 70, height: 70}}
+                style={{ width: 70, height: 70 }}
                 alt="logo"
               />
             </Link>
@@ -26,7 +26,7 @@ class Navbar extends Component {
               <img
                 className="navbar-brand position-relative mr-3"
                 src={require("../Images/FeedForward-Inverted.png")}
-                style={{width: 70, height: 70}}
+                style={{ width: 70, height: 70 }}
                 alt="logo"
               />
             </Link>

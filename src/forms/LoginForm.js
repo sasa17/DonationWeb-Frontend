@@ -15,9 +15,13 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    authStore.login(this.state);
+    await authStore.login(this.state);
+    if (!authStore.user)
+      alert(
+        "User not found. Incorrect Username/Password. Try again or sign up"
+      );
   };
 
   render() {
@@ -31,11 +35,14 @@ class Login extends Component {
           <img
             className="img-fluid"
             src={require("../Images/FeedForward.png")}
-            style={{width: 250, height: 250, alignSelf: "center"}}
+            style={{ width: 250, height: 250, alignSelf: "center" }}
             alt="logo"
           />
         </div>
-        <div className="card position-relative" style={{borderColor: "darkgreen", backgroundColor: "snow"}}>
+        <div
+          className="card position-relative"
+          style={{ borderColor: "darkgreen", backgroundColor: "snow" }}
+        >
           <div className="card-body position-relative">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group position-relative">

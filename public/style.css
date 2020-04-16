@@ -11,11 +11,11 @@ body {
 }
 
 .content {
-  padding: 10px;
+  padding: 0px;
 }
 
 .card,
-.card:hover {
+/* .card:hover {
   transition: all 0.2s ease-out;
   text-decoration: none;
 }
@@ -24,7 +24,7 @@ body {
   border-color: #800c0c;
   color: #f00c0c;
   cursor: pointer;
-}
+} */
 
 .card {
   margin: 20px;
