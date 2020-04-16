@@ -74,7 +74,7 @@ class Restaurants extends Component {
             </p>
             <img
               src={require("../../Images/Dash.png")}
-              style={{ height: 300 }}
+              style={{ width: 350, height: 300 }}
               className="card-img-bottom"
               alt="dash"
             ></img>

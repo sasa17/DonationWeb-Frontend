@@ -28,13 +28,7 @@ class Research extends Component {
             lineHeight: 2,
           }}
         >
-          <p>
-            “Current food and other resource consumption levels are not
-            sustainable. We need to urgently focus on how to feed a growing
-            population without further harming the planet,” said Jingdong Hua,
-            World Bank Vice President and Treasurer.
-          </p>
-          <p>
+          <p className="mt-5">
             According to The World Bank in 2019, "one-third of all food produced
             in the world is lost or wasted every year. If food loss and waste
             could be represented as its own country, it would be the third
@@ -44,7 +38,7 @@ class Research extends Component {
             obesity—illnesses that stifle human capital development and create a
             costly public health crisis.”{" "}
           </p>
-          <p>
+          <p className="mt-5">
             Another study stated that The Gulf Cooperation Countries (GCC) are
             amongst the world’s top food wasters, while The Food Sustainability
             Index stated that Saudi Arabia wastes the most food annually,
