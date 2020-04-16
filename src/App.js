@@ -7,17 +7,16 @@ import Navbar from "./Components/Navbar";
 import SignupForm from "./Forms/SignupForm";
 import LoginForm from "./Forms/LoginForm";
 import Contact from "./Forms/ContactForm";
-import Profile from "./Pages/Profile";
-import Dashboard from "./Pages/Dashboard";
-import Landing from "./Pages/Landing";
-
+import Profile from "./Pages/Profile/index";
+import Dashboard from "./Pages/Dashboard/index";
+import Home from "./Pages/Home/home";
 
 const App = () => {
   const getView = () => {
     return (
       <Switch>
         <Redirect exact from="/" to="/home" />
-        <Route path="/home" component={Landing} />
+        <Route path="/home" component={Home} />
         <Route path="/signup" component={SignupForm} />
         <Route path="/login" component={LoginForm} />
         <Route path="/profile" component={Profile} />
@@ -28,13 +27,15 @@ const App = () => {
   };
 
   return (
-    <div id="app" className="container-fluid row-fluid position-relative" style={{backgroundColor: "snow"}}>
+    <div
+      id="app"
+      className="container-fluid row-fluid position-relative"
+      style={{ backgroundColor: "snow" }}
+    >
       <div className="row">
         <Navbar />
-        </div>
-      <div className="content row position-relative">
-        {getView()}
       </div>
+      <div className="content row position-relative">{getView()}</div>
     </div>
   );
 };
